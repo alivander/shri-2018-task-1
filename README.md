@@ -73,3 +73,41 @@ Error: Dialect needs to be explicitly supplied as of v4.0.0
 на строку из документации:
 "const sequelize = new Sequelize('database', 'username', 'password', {...});"
 6. npm run dev - успешно.
+6. npm run dev - успешно.
+7. Проверка http://localhost:3000/ - успешно.
+8. Проверка http://localhost:3000/graphql/ - Cannot GET /graphql/
+9. Изучаем npm graphql, express-graphql, graphql-tools, graphql-date (из package.json).
+10. Переход к следующему этапу, так как пока знаний для последующей отладки не достаточно. а время, отведенное на выполнение, ограничено. Запланированно вернуться позже к предыдущему пункту.
+11. npm run lint (из packaje.json) - найдены проблемные строки.
+<!-- > shri-2018@1.0.0 lint E:\github\shri-2018-task-1
+> semistandard
+
+semistandard: Semicolons For All! (https://github.com/Flet/semistandard)
+semistandard: Run `semistandard --fix` to automatically fix some problems.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:4:1: Expected indentation of 2 spaces but found 0.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:5:5: Expected indentation of 2 spaces but found 4.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:6:3: Expected indentation of 0 spaces but found 2.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:8:33: 'argumets' is not defined.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:10:1: Expected indentation of 2 spaces but found 0.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:11:5: Expected indentation of 2 spaces but found 4.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:12:3: Expected indentation of 0 spaces but found 2.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:16:1: Expected indentation of 2 spaces but found 0.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:17:5: Expected indentation of 2 spaces but found 4.
+  E:\github\shri-2018-task-1\graphql\resolvers\query.js:18:3: Expected indentation of 0 spaces but found 2.
+  E:\github\shri-2018-task-1\graphql\routes.js:18:17: Unexpected trailing comma.
+  E:\github\shri-2018-task-1\index.js:13:26: Missing semicolon.
+  E:\github\shri-2018-task-1\models\index.js:11:1: Expected indentation of 2 spaces but found 0.
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! shri-2018@1.0.0 lint: `semistandard`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the shri-2018@1.0.0 lint script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\Admin\AppData\Roaming\npm-cache\_logs\2018-01-02T15_17_14_363Z-debug.log -->
+12. Исправляем форматирование кода в graphql\resolvers\query.js.
+13. Исправляем форматирование кода в graphql\routes.js.
+14. Исправляем форматирование кода в index.js.
+15. Исправляем форматирование кода в models\index.js.
