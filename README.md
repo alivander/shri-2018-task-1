@@ -77,7 +77,7 @@ Error: Dialect needs to be explicitly supplied as of v4.0.0
 7. Проверка http://localhost:3000/ - успешно.
 8. Проверка http://localhost:3000/graphql/ - Cannot GET /graphql/
 9. Изучаем npm graphql, express-graphql, graphql-tools, graphql-date (из package.json).
-10. Переход к следующему этапу, так как пока знаний для последующей отладки не достаточно. а время, отведенное на выполнение, ограничено. Запланированно вернуться позже к предыдущему пункту.
+10. Переход к следующему этапу, так как пока знаний для последующей отладки не достаточно, а время, отведенное на выполнение, ограничено. Запланированно вернуться позже к предыдущему пункту.
 11. npm run lint (из packaje.json) - найдены проблемные строки.
 <!-- > shri-2018@1.0.0 lint E:\github\shri-2018-task-1
 > semistandard
@@ -111,3 +111,4 @@ npm ERR!     C:\Users\Admin\AppData\Roaming\npm-cache\_logs\2018-01-02T15_17_14_
 13. Исправляем форматирование кода в graphql\routes.js.
 14. Исправляем форматирование кода в index.js.
 15. Исправляем форматирование кода в models\index.js.
+16. Возвращаемся к пункту 8 (http://localhost:3000/graphql/ - Cannot GET /graphql/). Ищем как вообще должен выглядеть GraphQL IDE. Из документации GraphQL для Express (http://graphql.org/graphql-js/running-an-express-graphql-server/) вставляем в index.js базовый пример кода (старый код закомментирован), проверям - GraphQL IDE открывается. Начинаем построчно возвращать структуру проекта, следя за работоспособностью. Переходя от файла index.js к graphql/routes.js и к graphql/resolvers/index.js, сверяемся с документацией к npm graphql-tools (https://www.npmjs.com/package/graphql-tools) - находим ошибку "resolvers: resolvers()" и "function resolvers ()". Исправляем.
