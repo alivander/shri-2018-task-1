@@ -10,10 +10,10 @@ module.exports = {
 
   Event: {
     users (event) {
-      event.getUsers();
+      return event.getUsers();
     },
     room (event) {
-      event.getRoom();
+      return event.getRoom();
     }
   },
 
