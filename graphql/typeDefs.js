@@ -4,13 +4,20 @@ scalar Date
 type User {
     id: ID!
     login: String!
-    homeFloor: Int
-    avatarUrl: String!
+    homeFloor: Int!
+    avatarUrl: String
 }
 
 input UserInput {
     login: String!
+    homeFloor: Int!
+    avatarUrl: String
+}
+
+input UserUpdate {
+    login: String
     homeFloor: Int
+    avatarUrl: String
 }
 
 type UserRoom {
@@ -37,7 +44,7 @@ type Event {
     dateStart: Date!
     dateEnd: Date!
     users: [User]
-    room: Room
+    room: Room!
 }
 
 input EventInput {
@@ -57,7 +64,7 @@ type Query {
 
 type Mutation {
   createUser(input: UserInput!): User
-  updateUser(id: ID!, input: UserInput!): User
+  updateUser(id: ID!, input: UserUpdate!): User
   removeUser(id: ID!): User
 
   createRoom(input: RoomInput!): Room
