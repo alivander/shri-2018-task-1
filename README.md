@@ -31,7 +31,12 @@ npm run reset-db
 
 1. Изучаем проект: папки, файлы, package.json, краткие общие сведения о Express, Sequelize, Graphql.
 2. npm i - успешно.
-3. npm run dev - error.
+3. npm run dev -
+  Error('Dialect needs to be explicitly supplied as of v4.0.0');
+  ...
+  Error: Dialect needs to be explicitly supplied as of v4.0.0
+      at new Sequelize (E:\github\shri-2018-task-1\node_modules\sequelize\lib\sequelize.js:175:13)
+      at Object.<anonymous> (E:\github\shri-2018-task-1\models\index.js:7:19)
 <!-- > shri-2018@1.0.0 dev E:\github\shri-2018-task-1
 > nodemon index.js
 
@@ -106,10 +111,19 @@ npm ERR! This is probably not a problem with npm. There is likely additional log
 
 npm ERR! A complete log of this run can be found in:
 npm ERR!     C:\Users\Admin\AppData\Roaming\npm-cache\_logs\2018-01-02T15_17_14_363Z-debug.log -->
-12. Исправляем форматирование кода в graphql\resolvers\query.js.
+12. Исправляем форматирование кода в graphql\resolvers\query.js, а так же в events заменяем argumets на {} (по аналогии с users).
 13. Исправляем форматирование кода в graphql\routes.js.
 14. Исправляем форматирование кода в index.js.
 15. Исправляем форматирование кода в models\index.js.
 16. Возвращаемся к пункту 8 (http://localhost:3000/graphql/ - Cannot GET /graphql/). Ищем как вообще должен выглядеть GraphQL IDE. Из документации GraphQL для Express (http://graphql.org/graphql-js/running-an-express-graphql-server/) вставляем в index.js базовый пример кода (старый код закомментирован), проверям - GraphQL IDE открывается. Начинаем построчно возвращать структуру проекта, следя за работоспособностью. Переходя от файла index.js к graphql/routes.js и к graphql/resolvers/index.js, сверяемся с документацией к npm graphql-tools (https://www.npmjs.com/package/graphql-tools) - находим ошибку "resolvers: resolvers()" и "function resolvers ()". Исправляем.
 17. Еще раз проходимся npm run lint.
 18. Запросы  через graphql на первый взгляд работают корректно, но не хватает знаний для оценки. Планируем вернуться позже, если останется время. Переходим ко второй части тестового задания.
+19. Когда второе задание завершено и разбирается третье, понимаем что нужны запросы и снова изучаем информацию о том какие бывают запросы и как они должны себя вести.
+    * Проверяем query запросы.
+    Находим ошибку в запросе event - вместо данных users и room возвращается null. Проверям graphql/resolvers, добавляем в index.js в users (event) и room (event) return.
+    * Проверяем mutation запросы.
+    Запрос на создание пользователя работает. Но при запросе данных по созданному пользователю, возвращается ошибка об отсутсвии авватарки. Проверяю typeDef.js. Я не уверена, что по заданию здесь можно исправлять данные, но не логично что у пользователя аватарка является обязательными данными, а домашний этаж нет, ведь он требуется для подбора рекомендованных переговорок. Изменяем в type User этаж на обязательный, а аватарку на необязательный пункт. Добавляем возможность указать аватарку в input UserInput, а также обязательным пуктом вставляем этаж пользователя.
+    Запрос UpdateUser работает, но при так как у них с CreateUser одинаковое содержимое input, каждый раз нужно для обновления данных вводить в обязательном порядке login и homeFloor, хотя мы можем хотеть изменить только аватарку, поэтому создадим новый input UpdateInput, где есть эти два пункта и аватарка, но все пункты необязательные. То есть зная только id пользователя мы можем изменить любою другую информацию о нем.
+    В запросе объекта Event комната (Room) является необязательными данными. Но не может же встреча проходить в "нигде". Делаем Room обязательной.
+    По запросу addUserToEvent выдает null. Проверяем в typeDef.js описание addUserToEvent - оно есть и корректно. Проверяем mutation.js - addUserToEvent отсутствует. Добавляем его по аналогии с removeUserFromEvent.
+    Проверяем запрос changeEventRoom. Он возвращает null. Проверяем mutation.js - changeEventRoom есть, но в нем отсутсвует return event - добавляем. Запрос возвращает event, но переговорка не изменилась. Изменяем в setRoom(Id) на setRoom(roomId). Запрос успешно изменяет переговорку.
