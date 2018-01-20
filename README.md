@@ -133,3 +133,4 @@ npm ERR!     C:\Users\Admin\AppData\Roaming\npm-cache\_logs\2018-01-02T15_17_14_
 app.use('/', express.static(path.join(__dirname, 'public')));
 ```
 вместо всей папки pages. Для меня это спорный момент, но я решила все таки удалить папку и перенести заготовку index.html в папку public. В обычной ситуации я бы посоветовалась с кем-то более опытным.
+22. В параметрах ответа на запрос в файле graphql/resolvers/query.js убираем "offset: 1", иначе при запросе теряем одну переговорку.
